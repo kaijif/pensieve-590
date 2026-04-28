@@ -45,3 +45,22 @@ Condition 3 provides the most critical insight for the paper. When faced with an
 To directly answer the prompt:
 1. **How much does the policy degrade?** When the network conditions are highly variable but bandwidth is sufficient (Wi-Fi/Satellite), the pre-trained RL policy does not degrade; it generalizes well. However, when pushed into a severe low-bandwidth extreme outside its training envelope, the black-box RL policy breaks entirely, failing to learn the basic survival mechanic of staying at the lowest bitrate.
 2. **Does robustMPC degrade more or less?** robustMPC degrades **significantly less** in extreme OOD scenarios. Because robustMPC explicitly calculates future buffer states using mathematical formulas rather than pattern matching, it maintains its structural safety guarantees. While RL (Pensieve) achieves higher peak performance in familiar distributions, robustMPC provides a far superior worst-case lower bound in unfamiliar extremes.
+
+## 6. Critical Assets for Paper Authors
+
+If you are writing the paper or creating the poster, here are the exact files and directories you need:
+
+### Figures and Plots (Ready for Publication)
+All generated plots are saved in **`test/charts/`**. You can drop these directly into LaTeX/Word:
+- **`summary_bar.png`**: The master bar chart showing Average Raw QoE across all conditions (highlights the massive penalty in Condition 3).
+- **`cdf_cond1.png`, `cdf_cond2.png`, `cdf_cond3.png`**: The Cumulative Distribution Functions comparing the two algorithms across all 20 traces for each condition.
+- **`qualitative_cond1.png`, `qualitative_cond2.png`, `qualitative_cond3.png`**: The Bitrate-over-Chunk step graphs (Figure 10 style). `qualitative_cond3.png` is the most important as it visually proves Pensieve's thrashing behavior.
+
+### Critical Scripts (Methodology Section)
+If you need to cite or explain how the data was generated:
+- **`traces/generate_custom_traces.py`**: Contains the mathematical logic (Gaussian/Geometric distributions) used to define the 3 OOD conditions.
+- **`test/run_all_experiments.sh`**: The orchestrator script proving that the environment variables and test suites were run deterministically.
+- **`test/plot_analysis.py`**: Contains the logic used to parse the raw outputs and generate the graphs. Note the specific timestamp normalization fix used to plot the qualitative traces accurately.
+
+### Raw Data (Verification)
+- **`test/experiment_results/`**: Contains the raw, chunk-by-chunk log files (`time_stamp`, `bit_rate`, `buffer_size`, `rebuffer_time`, `reward`) for every single simulation run, partitioned by condition and algorithm.
