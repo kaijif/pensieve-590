@@ -1,0 +1,36 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{mao2017neural}
+\citation{mao2017neural}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background and Related Work}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Neural Adaptive Video Streaming with Pensieve}{1}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}robustMPC}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Out-of-Distribution Trace Engineering}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Simulation Framework}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results and Analysis}{2}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Condition 1: The Buffer Abstraction}{2}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Normalized Average QoE across the three test conditions. While Pensieve closely matches robustMPC in Conditions 1 and 2, it incurs a substantially negative QoE penalty in the extreme out-of-distribution environment of Condition 3, indicating a failure to generalize.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:summary}{{1}{3}{Normalized Average QoE across the three test conditions. While Pensieve closely matches robustMPC in Conditions 1 and 2, it incurs a substantially negative QoE penalty in the extreme out-of-distribution environment of Condition 3, indicating a failure to generalize}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces CDF of Total QoE for Condition 1 (Satellite). Both algorithms perform almost identically near the maximum possible score.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:cdf1}{{2}{3}{CDF of Total QoE for Condition 1 (Satellite). Both algorithms perform almost identically near the maximum possible score}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Condition 2: RL Oscillation Smoothing}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Bitrate choices over sequential video chunks for a single representative trace in Condition 1. The algorithms stay safely at the maximum bitrate tier, completely absorbing micro-outages.}}{3}{figure.3}\protected@file@percent }
+\newlabel{fig:qualitative1}{{3}{3}{Bitrate choices over sequential video chunks for a single representative trace in Condition 1. The algorithms stay safely at the maximum bitrate tier, completely absorbing micro-outages}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces CDF of Total QoE for Condition 2 (Bursty Wi-Fi). Pensieve slightly outperforms robustMPC across the majority of the distribution.}}{4}{figure.4}\protected@file@percent }
+\newlabel{fig:cdf2}{{4}{4}{CDF of Total QoE for Condition 2 (Bursty Wi-Fi). Pensieve slightly outperforms robustMPC across the majority of the distribution}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Bitrate choices for a representative trace in Condition 2. Pensieve effectively learns to smooth its bitrate choices amidst volatile throughput swings.}}{4}{figure.5}\protected@file@percent }
+\newlabel{fig:qualitative2}{{5}{4}{Bitrate choices for a representative trace in Condition 2. Pensieve effectively learns to smooth its bitrate choices amidst volatile throughput swings}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Bitrate choices over sequential video chunks for a single representative trace in Condition 3 (Degraded). robustMPC immediately identifies the capacity deficit and locks onto the minimum 300 Kbps tier. Pensieve extrapolates incorrectly, attempting to pull 4300 Kbps chunks over a 0.2 Mbps connection, resulting in significant rebuffering.}}{4}{figure.6}\protected@file@percent }
+\newlabel{fig:qualitative3}{{6}{4}{Bitrate choices over sequential video chunks for a single representative trace in Condition 3 (Degraded). robustMPC immediately identifies the capacity deficit and locks onto the minimum 300 Kbps tier. Pensieve extrapolates incorrectly, attempting to pull 4300 Kbps chunks over a 0.2 Mbps connection, resulting in significant rebuffering}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Condition 3: Policy Failure under Distributional Shift}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces CDF of Total QoE for Condition 3 (Degraded). robustMPC substantially bounds the negative QoE penalty compared to Pensieve's pronounced failure tail.}}{4}{figure.7}\protected@file@percent }
+\newlabel{fig:cdf3}{{7}{4}{CDF of Total QoE for Condition 3 (Degraded). robustMPC substantially bounds the negative QoE penalty compared to Pensieve's pronounced failure tail}{figure.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{4}{section.5}\protected@file@percent }
+\bibstyle{IEEEtran}
+\bibcite{mao2017neural}{1}
+\@writefile{toc}{\contentsline {section}{References}{5}{section*.1}\protected@file@percent }
+\gdef \@abspage@last{5}
