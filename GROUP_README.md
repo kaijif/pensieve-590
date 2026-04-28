@@ -16,7 +16,32 @@ The environment and automation pipeline are fully reproducible:
 - **Orchestration**: `test/run_all_experiments.sh` loops through all traces and executes both `test/rl_no_training.py` (Pensieve) and `test/mpc.py` (robustMPC), logging the chunk-by-chunk decisions to `test/experiment_results/`.
 - **Analysis**: `test/plot_analysis.py` parses the output logs and generates Cumulative Distribution Functions (CDFs), a normalized summary bar chart, and qualitative Bitrate-over-Time plots found in `test/charts/`.
 
-## 3. The 3 Out-of-Distribution Network Conditions
+## 3. Quickstart: Reproducing the Experiments
+
+Because this repository relies on deprecated dependencies (Python 2.7, TF 1.1.0), you **must** run it inside the provided Docker container.
+
+### Step 1: Start the Container
+From the root of the repository, start the container in the background:
+```bash
+docker compose up -d
+```
+
+### Step 2: Enter the Environment
+Drop into the container's bash shell (this logs you in as the `pensieve` user):
+```bash
+docker compose exec pensieve bash
+```
+
+### Step 3: Run the Automation Pipeline
+Once inside the container, navigate to the test directory and run the orchestrator script. This will automatically regenerate the 60 custom traces, execute all 120 RL and MPC simulations, and re-plot the charts:
+```bash
+cd test
+./run_all_experiments.sh
+python plot_analysis.py
+```
+*Note: The generated charts will be saved to `test/charts/` on your host machine via volume binding.*
+
+## 4. The 3 Out-of-Distribution Network Conditions
 
 We engineered three network envelopes that differ substantially from the standard FCC broadband datasets:
 
@@ -24,7 +49,7 @@ We engineered three network envelopes that differ substantially from the standar
 2. **Condition 2 (Bursty Wi-Fi)**: Highly oscillatory throughput jumping between 1 Mbps and 5 Mbps with geometric hold times, simulating a crowded public network with high packet collision.
 3. **Condition 3 (Degraded)**: Sustained, extremely low bandwidth (mean < 0.2 Mbps) dropping periodically to near-zero. This simulates rural edge-of-cell coverage, far below the training distribution of standard 3G/Broadband.
 
-## 4. Findings and Results
+## 5. Findings and Results
 
 The results provide a highly conclusive answer to our research question: **Pensieve generalizes perfectly to environments that exceed or match the variance of its training set, but catastrophically fails when forced to extrapolate into extremely poor network conditions.**
 
@@ -40,13 +65,13 @@ Condition 3 provides the most critical insight for the paper. When faced with an
 - **robustMPC** behaved as designed: recognizing the terrible throughput, its fixed mathematical horizon safely locked the video player into the minimum bitrate (300 Kbps), finishing the 48-chunk video in ~800 seconds with an average QoE of -2,242.
 - **Pensieve**, operating completely out-of-distribution, wildly thrashed. It repeatedly requested impossibly high bitrates (2850 Kbps and 4300 Kbps). This resulted in massive, crippling rebuffering penalties. It took Pensieve **over 10,700 seconds** to download the exact same video, resulting in a disastrous average QoE of -32,991.
 
-## 5. Conclusion for the Paper
+## 6. Conclusion for the Paper
 
 To directly answer the prompt:
 1. **How much does the policy degrade?** When the network conditions are highly variable but bandwidth is sufficient (Wi-Fi/Satellite), the pre-trained RL policy does not degrade; it generalizes well. However, when pushed into a severe low-bandwidth extreme outside its training envelope, the black-box RL policy breaks entirely, failing to learn the basic survival mechanic of staying at the lowest bitrate.
 2. **Does robustMPC degrade more or less?** robustMPC degrades **significantly less** in extreme OOD scenarios. Because robustMPC explicitly calculates future buffer states using mathematical formulas rather than pattern matching, it maintains its structural safety guarantees. While RL (Pensieve) achieves higher peak performance in familiar distributions, robustMPC provides a far superior worst-case lower bound in unfamiliar extremes.
 
-## 6. Critical Assets for Paper Authors
+## 7. Critical Assets for Paper Authors
 
 If you are writing the paper or creating the poster, here are the exact files and directories you need:
 
