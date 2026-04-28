@@ -89,7 +89,7 @@ This trace represents the extreme lower bound of connectivity, simulating edge-o
 
 \begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\textwidth]{test/charts/summary_bar.png}
+  \includegraphics[width=\textwidth]{../test/charts/summary_bar.png}
   \caption{Normalized Average QoE across the three test conditions. While Pensieve closely matches robustMPC in Conditions 1 and 2, it incurs a substantially negative QoE penalty in the extreme out-of-distribution environment of Condition 3, indicating a failure to generalize.}
   \label{fig:summary}
 \end{figure*}
@@ -106,14 +106,14 @@ Our automated pipeline generated 120 test trajectories. We analyzed both the cum
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{test/charts/cdf_cond1.png}
+  \includegraphics[width=\linewidth]{../test/charts/cdf_cond1.png}
   \caption{CDF of Total QoE for Condition 1 (Satellite). Both algorithms perform almost identically near the maximum possible score.}
   \label{fig:cdf1}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{test/charts/qualitative_cond1.png}
+  \includegraphics[width=\linewidth]{../test/charts/qualitative_cond1.png}
   \caption{Bitrate choices over sequential video chunks for a single representative trace in Condition 1. The algorithms stay safely at the maximum bitrate tier, completely absorbing micro-outages.}
   \label{fig:qualitative1}
 \end{figure}
@@ -128,14 +128,14 @@ This phenomenon is explained by the fundamental mechanics of the video player. T
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{test/charts/cdf_cond2.png}
+  \includegraphics[width=\linewidth]{../test/charts/cdf_cond2.png}
   \caption{CDF of Total QoE for Condition 2 (Bursty Wi-Fi). Pensieve slightly outperforms robustMPC across the majority of the distribution.}
   \label{fig:cdf2}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{test/charts/qualitative_cond2.png}
+  \includegraphics[width=\linewidth]{../test/charts/qualitative_cond2.png}
   \caption{Bitrate choices for a representative trace in Condition 2. Pensieve effectively learns to smooth its bitrate choices amidst volatile throughput swings.}
   \label{fig:qualitative2}
 \end{figure}
@@ -148,7 +148,7 @@ Despite the fact that these specific highly-geometric jumps fell outside the FCC
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{test/charts/qualitative_cond3.png}
+  \includegraphics[width=\linewidth]{../test/charts/qualitative_cond3.png}
   \caption{Bitrate choices over sequential video chunks for a single representative trace in Condition 3 (Degraded). robustMPC immediately identifies the capacity deficit and locks onto the minimum 300 Kbps tier. Pensieve extrapolates incorrectly, attempting to pull 4300 Kbps chunks over a 0.2 Mbps connection, resulting in significant rebuffering.}
   \label{fig:qualitative3}
 \end{figure}
@@ -157,7 +157,7 @@ Despite the fact that these specific highly-geometric jumps fell outside the FCC
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{test/charts/cdf_cond3.png}
+  \includegraphics[width=\linewidth]{../test/charts/cdf_cond3.png}
   \caption{CDF of Total QoE for Condition 3 (Degraded). robustMPC substantially bounds the negative QoE penalty compared to Pensieve's pronounced failure tail.}
   \label{fig:cdf3}
 \end{figure}
