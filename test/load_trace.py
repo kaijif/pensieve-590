@@ -1,7 +1,9 @@
 import os
 
 
-COOKED_TRACE_FOLDER = './cooked_traces/'
+COOKED_TRACE_FOLDER = os.environ.get('TRACE_DIR', './cooked_traces/')
+if not COOKED_TRACE_FOLDER.endswith('/'):
+    COOKED_TRACE_FOLDER += '/'
 
 
 def load_trace(cooked_trace_folder=COOKED_TRACE_FOLDER):

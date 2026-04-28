@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  pensieve:
+    build: .
+    platform: linux/amd64
+    image: pensieve:latest
+    container_name: pensieve
+    privileged: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+    volumes:
+      - .:/workspace
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
